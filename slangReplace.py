@@ -33,7 +33,8 @@ genSlangs = {
     r"\btbh\b" : "to be honest",
     r"\bic\b" : "i see",
     r"\bbtw\b" : "by the way",
-    r"\blol\b" : "laughing"
+    r"\blol\b" : "laughing",
+    r"\bimo\b" : "in my opinion"
 }
 
 #general emoticons

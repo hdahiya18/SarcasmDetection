@@ -8,7 +8,7 @@ def cleanData(dataObj):
 	finalData = []
 	hashTags = re.compile(r'#\w*\s?')	#1 or more chars after hashtag and then 0 or 1 space
 	friendTags = re.compile(r'@\w*\s?')	#removing tagged persons
-	nTags = re.compile(r'\\n\w*\s?')	#removing something I observed
+	nTags = re.compile(r'\\n\w*\s?')	#removing "\n"'s
 	sarcasmWord = re.compile(r'sarcasm', re.I)	#remove the word 'sarcasm'
 	rtWord = re.compile(r'RT : ') #remove 'retweet' identifier
 
@@ -25,7 +25,7 @@ def cleanData(dataObj):
 				tweet = re.sub(nTags, ' ', tweet)
 				tweet = re.sub(rtWord, ' ', tweet)
 				tweet = " ".join(tweet.split())	#removing any multiple spaces
-				if (len(tweet.split()) >= 4):	#tweets with atleast 4 words
+				if (len(tweet.split()) >= 3):	#tweets with atleast 4 words
 					finalData = finalData + [tweet]
 
 	return finalData
