@@ -14,7 +14,7 @@ def gaussianKernel(x, y, sigma=5.0):
 
 class SVM(object):
 
-    def __init__(self, kernel=gaussianKernel, C=None):
+    def __init__(self, kernel=linearKernel, C=0.1):
         self.kernel = kernel
         self.C = C
         if self.C is not None: self.C = float(self.C)

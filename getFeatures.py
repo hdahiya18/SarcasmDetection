@@ -4,15 +4,15 @@ import nltk
 import sys
 import featureExtraction
 from sklearn.feature_extraction import DictVectorizer
-#from sklearn.svm import LinearSVC
-#from sklearn import svm
 from sklearn.utils import shuffle
-#from sklearn.ensemble import RandomForestClassifier
 import topic
 import random
 import operator
 import slangReplace as sr
-#import svm
+import svm
+#from sklearn.svm import LinearSVC
+#from sklearn import svm
+#from sklearn.ensemble import RandomForestClassifier
 
 print "Loading data...."
 
@@ -26,7 +26,7 @@ output = ['Non-Sarcastic', 'Sarcastic']
 
 featureSet = []
 
-select = 2000
+select = 10000
 
 print "Randomly selecting ", select, " tweets from each set..."
 posData = random.sample(posData,select)#[0:2000]
@@ -119,75 +119,8 @@ np.save('trainData', trainVec)
 np.save('trainLabel', trainTargets)
 np.save('testData', testVec)
 np.save('testLabel', testTargets)
-
-"""
-print ''
-print "SVM Classifier:"
-
-classifier = svm.SVM()
-classifier.fit(trainVec, trainTargets)
-
-predTargets = classifier.predict(testVec)
-#correct = np.sum(predTargets == testTargets)
-
-correct = 0
-corrpos = 0
-corrneg = 0
-totalPos = 0
-totalNeg = 0
-for i in range(len(predTargets)):
-	if predTargets[i] == testTargets[i]:
-		correct += 1
-		if testTargets[i] == 1:
-			corrpos += 1
-		else:
-			corrneg += 1
-	if testTargets[i] == 1:
-		totalPos += 1
-	else:
-		totalNeg += 1
-print correct, 'correctly classified out of ', totalPos+totalNeg
-print corrpos, 'correctly classified as Sarcastic out of total ', totalPos, ' Sarcastic'
-print corrneg, 'correctly classified as Non-Sarcastic out of total ', totalNeg, ' Non-Sarcastic'
-
-print 'SVM Overall Accuracy:', correct/float(len(testTargets)) * 100, '%'
-
-
-print ''
-print "Random Forest Classifier:"
-
-
-classifier = RandomForestClassifier(n_estimators=10)
-classifier = classifier.fit(trainVec, trainTargets)
-
-predTargets = classifier.predict(testVec)
-#correct = np.sum(predTargets == testTargets)
-
-correct = 0
-corrpos = 0
-corrneg = 0
-totalPos = 0
-totalNeg = 0
-for i in range(len(predTargets)):
-	if predTargets[i] == testTargets[i]:
-		correct += 1
-		if testTargets[i] == 1:
-			corrpos += 1
-		else:
-			corrneg += 1
-	if testTargets[i] == 1:
-		totalPos += 1
-	else:
-		totalNeg += 1
-print correct, 'correctly classified out of ', totalPos+totalNeg
-print corrpos, 'correctly classified as Sarcastic out of total ', totalPos, ' Sarcastic'
-print corrneg, 'correctly classified as Non-Sarcastic out of total ', totalNeg, ' Non-Sarcastic'
-
-print 'Random Forest Overall Accuracy:', correct/float(len(testTargets)) * 100, '%'
-
 """
 
-"""
 featList = []
 index = 0
 for each in featureVecNaive:
@@ -210,11 +143,13 @@ testTargets = targets[:size]
 
 print "Naive Bayes Classifier"
 classifier = nltk.NaiveBayesClassifier.train(trainVec)
-
+classifier.classify()
 print 'Accuracy Naive Bayes Classifier: ', nltk.classify.accuracy(classifier, testVec)*100,' %'
 #print ' '
 #print classifier.show_most_informative_features()
+"""
 
+"""
 print "SVM Classifier"
 trainVec = featureVec[size:,0::]
 trainTargets = targets[size:]

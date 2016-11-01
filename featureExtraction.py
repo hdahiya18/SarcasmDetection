@@ -270,12 +270,12 @@ def sentimentScore(finalFeatures, tweet):
 	finalFeatures['Blob sentiment contrast 31'] = np.abs(maxSenti - minSenti)
 	finalFeatures['Blob sentiment contrast 32'] = np.abs(finalFeatures['Blob sentiment 1/3'] - finalFeatures['Blob sentiment 3/3'])
 
-
+"""
 def topicFeature(finalFeatures,tweet,topicModeler):
 
 	topics = topicModeler.transform(tweet)
 	for j in range(len(topics)):
 		finalFeatures['Topic :' +str(topics[j][0])] = topics[j][1]
 
-
+"""
 
