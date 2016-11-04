@@ -4,6 +4,7 @@ from sklearn.ensemble import RandomForestClassifier, BaggingClassifier
 #from sklearn.multiclass import OneVsRestClassifier
 #from sklearn.svm import SVC
 from sklearn.naive_bayes import GaussianNB
+from sklearn.utils import shuffle
 
 trainVec = np.load('trainData.npy')
 trainTargets = np.load('trainLabel.npy')
@@ -12,7 +13,7 @@ testTargets = np.load('testLabel.npy')
 
 #print trainVec[0]
 #print trainTargets[0]
-
+"""
 classifier = GaussianNB()
 classifier.fit(trainVec, trainTargets)
 
@@ -40,7 +41,7 @@ print corrpos, 'correctly classified as Sarcastic out of total ', totalPos, ' Sa
 print corrneg, 'correctly classified as Non-Sarcastic out of total ', totalNeg, ' Non-Sarcastic'
 
 print 'Naive Bayes Overall Accuracy:', correct/float(len(testTargets)) * 100, '%'
-
+"""
 print ''
 print "SVM Classifier:"
 n_estimators = 10

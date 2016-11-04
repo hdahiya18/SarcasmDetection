@@ -40,7 +40,7 @@ def ngrams(finalFeatures, tweet, mostFreq):
 			unigrams.append(each)
 
 	#unigrams = [each if each not in stop]
-	unigrams = [stemmer.stem(tok.lower()) for tok in unigrams]	#stem the words to inlcude in dictionary
+	#unigrams = [stemmer.stem(tok.lower()) for tok in unigrams]	#stem the words to inlcude in dictionary
 	bigrams = nltk.bigrams(unigrams)
 	bigrams = [words[0]+' '+words[1] for words in bigrams]	#generate all bigrams
 	

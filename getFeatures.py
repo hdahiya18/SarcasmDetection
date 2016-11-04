@@ -6,10 +6,14 @@ import featureExtraction
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.utils import shuffle
 import topic
+from nltk.stem.snowball import SnowballStemmer
 import random
 import operator
 import slangReplace as sr
 import svm
+
+stemmer = SnowballStemmer("english", ignore_stopwords=True)
+
 #from sklearn.svm import LinearSVC
 #from sklearn import svm
 #from sklearn.ensemble import RandomForestClassifier
@@ -26,7 +30,7 @@ output = ['Non-Sarcastic', 'Sarcastic']
 
 featureSet = []
 
-select = 10000
+select = 1000
 
 print "Randomly selecting ", select, " tweets from each set..."
 posData = random.sample(posData,select)#[0:2000]
@@ -47,6 +51,7 @@ for each in posData+negData:
 	each = sr.repEmoti(each)
 	each = nltk.word_tokenize(each)
 	for word in each:
+		#word = stemmer.stem(word)
 		if word not in stop and mostFreq.has_key(word):
 			mostFreq[word] += 1
 		elif word not in stop:
@@ -119,8 +124,8 @@ np.save('trainData', trainVec)
 np.save('trainLabel', trainTargets)
 np.save('testData', testVec)
 np.save('testLabel', testTargets)
-"""
 
+"""
 featList = []
 index = 0
 for each in featureVecNaive:

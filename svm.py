@@ -9,12 +9,12 @@ def linearKernel(x1, x2):
 def polynomialKernel(x, y, p=3):
     return (1 + np.dot(x, y)) ** p
 
-def gaussianKernel(x, y, sigma=5.0):
+def gaussianKernel(x, y, sigma=100.0):
     return np.exp(-linalg.norm(x-y)**2 / (2 * (sigma ** 2)))
 
 class SVM(object):
 
-    def __init__(self, kernel=linearKernel, C=0.1):
+    def __init__(self, kernel=gaussianKernel, C=0.1):
         self.kernel = kernel
         self.C = C
         if self.C is not None: self.C = float(self.C)
